@@ -1,0 +1,23 @@
+# hw1Q3)  solution
+
+Create or replace function get_dept_name_surname(deptid )
+V_name   employees.first_name%types;
+V_surname  employee.surname%types;
+Begin
+Select first_name,surname into v_name,surname
+From   Employees
+Where employee_id = (select manager_id  from departments where deprtment_id =deptid);
+Return   v_name ,surname
+End
+
+
+Q3) SOLUTION
+
+Create or replace procedure change_dept_manager(dept_id)
+V_emp_id employee.employee_id%types;
+Begin
+Select employee_id into  v_emp_id
+From   employee
+Where employee_id =( select manager_id from departments whare department_id = deptid
+UPDATE department set manager_id = v_emp id
+Whare department_id = dept_id
